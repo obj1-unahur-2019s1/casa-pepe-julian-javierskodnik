@@ -1,30 +1,70 @@
 import cosas.* 
 
 object casaDePepeYJulian {
-	const cosas = []
-	var tieneComida = false
-	
-	
+	var cosas = [heladera, cama, tiraDeAsado, paqueteDeFideos, plancha]
+	//var tieneComida = false
+
+
+method comprar(cosa){
+	cosas.add(cosa)
 }
 
+method cantidadDeCosasCompradas(){
+	return cosas.size {}
+}
+
+
+method tieneComida(){
+	return cosas.any{cadaCosa => cadaCosa.esComida()}
+	
+}
 
 method vieneDeEquiparse(){
-	if (cosas.size == 0)
-	return false
-	}
-	else {
-		
-		trae ultimo elemento
-		if (ultimoelemento.electrodomestico or ultimoelemento.precio > 5000)
-		return true	
+	const ultimaCosa = cosas.last()
+	return ultimaCosa.esElectrodomestico() or ultimaCosa.precio() > 5000
+	
 }
 
-method comprasMasCaras
-ordenar por precio desc
-return cosas.get(0)
+method esDerrochona(){
+	return cosas.sum {cadaCosa => cadaCosa.precio()} >= 9000
+	
+}
 
-var cosas = []
+method compraMasCara(){
+	return cosas.max {cadaCosa => cadaCosa.precio()}
+		
+}
+	
+method electrodomesticosComprados(){
+	return cosas.filter {cadaCosa => cadaCosa.esElectrodomestico()}
+	
+}	
+
+method malaEpoca(){
+	return cosas.all {cadaCosa => cadaCosa.esComida()}
+	
+	
+}
+
+method queFaltaComprar(lista){
+	return lista.asSet().difference(cosas.asSet())
+	
+}
+
+method faltaComida(){
+	return cosas.count { cadaCosa => cadaCosa.esComida() } < 2
+}
+	
+}
+	
 
 
 
-cuando necesito cantidad pido cosas.size
+
+
+
+
+
+
+
+
